@@ -13,17 +13,57 @@
 						function validador(email){
 							var tester = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-]+)\.)+([a-zA-Z0-9]{2,4})+$/;
 							return tester.test(email);
-						}		
+						}
+						function vcodcliente(vcod){
+							var tcod = /^[c]+([0-9])*$/;
+							return tcod.test(vcod);
+						}
+						function vnpedido(vnp){
+							var tpedido = /^([0-9]{4})$/;
+							return tpedido.test(vnp);
+						}				
 
 						function validar(){
 							var nombre = document.getElementById('nombre').value;
 							var email = document.getElementById('email').value;
 							var pass1 = document.getElementById('pass1').value;
 							var pass2 = document.getElementById('pass2').value;
+							var cod_cliente = document.getElementById('cod_cliente').value;
+							var numero_pedido = document.getElementById('numero_pedido').value;
+							
 
 							if (nombre == "") {
 								$('#alert').html('ingrese nombre').slideDown(500);
 								$('#nombre').focus();
+								return false;
+							}else{
+								$('#alert').html('').slideUp(300);
+							}
+							if (cod_cliente == "") {
+								$('#alert').html('ingrese cod_cliente').slideDown(500);
+								$('#cod_cliente').focus();
+								return false;
+							}else{
+								$('#alert').html('').slideUp(300);
+							}
+							if (vcodcliente(cod_cliente)==false) {
+								$('#alert').html('ingrese codigo cliente valido').slideDown(500);
+								$('#cod_cliente').focus();
+								return false;
+							}else{
+								$('#alert').html('').slideUp(300);
+							}
+
+							if (numero_pedido == "") {
+								$('#alert').html('ingrese numero_pedido').slideDown(500);
+								$('#numero_pedido').focus();
+								return false;
+							}else{
+								$('#alert').html('').slideUp(300);
+							}
+							if (vnpedido(numero_pedido)==false) {
+								$('#alert').html('ingrese numero de pedido valido').slideDown(500);
+								$('#numero_pedido').focus();
 								return false;
 							}else{
 								$('#alert').html('').slideUp(300);
@@ -81,6 +121,12 @@
 				<form action="" method="post" onsubmit="javascript:return validar(this);">
 						<label for="nombre">Nombre</label><br>
 						<input type="text" class="text" name="nombre" id="nombre" onblur="validar()"><br>
+
+						<label for="cod_cliente">cod_cliente</label><br>
+						<input type="text" class="text" name="cod_cliente" id="cod_cliente" onblur="validar()"><br>
+
+						<label for="numero_pedido">numero_pedido</label><br>
+						<input type="text" class="text" name="numero_pedido" id="numero_pedido" onblur="validar()"><br>
 
 						<label for="email">Email</label><br>
 						<input type="text" name="email" id="email" onblur="validar()"><br>
